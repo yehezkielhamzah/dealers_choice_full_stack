@@ -6,7 +6,7 @@ const sequelize = new Sequelize(process.env.DATABASE_URL || 'postgres://localhos
 
 app.use('/dist', express.static(path.join(__dirname, 'dist')));
 app.get('/', (req, res)=> res.sendFile(path.join(__dirname, 'index.html')));
-//app.use(express.static('public'));
+
 
 
 app.get('/api/posts', async(req, res, next)=>{
@@ -24,6 +24,17 @@ app.post('/api/posts', async(req, res, next)=>{
   }
   catch (e) {
     next (e)
+  }
+});
+
+app.get('/api/posts/:id', async(req, res, next)=> {
+  try {
+    const post = await Post.findByPk(req.params.id);
+    await post.update(req.body);
+    res.send(post);
+  }
+  catch(ex){
+    next(ex);
   }
 });
 

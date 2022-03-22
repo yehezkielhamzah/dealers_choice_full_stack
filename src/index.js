@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios'
+import { Provider } from 'react-redux'
+import { HashRouter } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 class App extends React.Component {
   constructor() {
@@ -42,9 +45,6 @@ class App extends React.Component {
   }
 }
 
-
-
-
 const root = document.querySelector('#root')
-ReactDOM.render(<App />, root)
+ReactDOM.render(<HashRouter><App /></HashRouter>, root)
 
