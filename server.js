@@ -6,6 +6,7 @@ const sequelize = new Sequelize(process.env.DATABASE_URL || 'postgres://localhos
 
 app.use('/dist', express.static(path.join(__dirname, 'dist')));
 app.get('/', (req, res)=> res.sendFile(path.join(__dirname, 'index.html')));
+//app.use(express.static('public'));
 
 
 app.get('/api/posts', async(req, res, next)=>{
